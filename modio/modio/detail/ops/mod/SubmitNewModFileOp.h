@@ -98,6 +98,9 @@ namespace Modio
 
 						if (ec)
 						{
+                            Modio::Detail::SDKSessionData::GetModManagementEventLog().AddEntry(Modio::ModManagementEvent {
+							CurrentModID, Modio::ModManagementEvent::EventType::Uploaded, ec});
+						    Modio::Detail::SDKSessionData::CancelModDownloadOrUpdate(CurrentModID);
 							Self.complete(ec);
 							return;
 						}
@@ -108,7 +111,9 @@ namespace Modio
 						CurrentModID, CurrentModParams);
 
 					// The API requires that 500MiB+ files should upload using the Multipart
-					if (ZipFileSize > Modio::Detail::Constants::Configuration::MultipartMaxFileSize)
+					
+					// Disabled until fixed
+					/*if (ZipFileSize > Modio::Detail::Constants::Configuration::MultipartMaxFileSize)
 					{
 						Modio::Detail::Logger().Log(Modio::LogLevel::Info, Modio::LogCategory::ModManagement,
 													"ModID {} Upload Multipart Archive file at {}", CurrentModID,
@@ -120,6 +125,9 @@ namespace Modio
 
 						if (ec)
 						{
+                            Modio::Detail::SDKSessionData::GetModManagementEventLog().AddEntry(Modio::ModManagementEvent {
+							CurrentModID, Modio::ModManagementEvent::EventType::Uploaded, ec});
+						    Modio::Detail::SDKSessionData::CancelModDownloadOrUpdate(CurrentModID);
 							Self.complete(ec);
 							return;
 						}
@@ -139,7 +147,7 @@ namespace Modio
 							ResponseBuffer, SubmitParams.AppendPayloadValue("upload_id", Session->UploadID.value()),
 							ProgressInfo, std::move(Self));
 					}
-					else
+					else*/
 					{
 						Modio::Detail::Logger().Log(Modio::LogLevel::Info, Modio::LogCategory::ModManagement,
 													"Upload Archive file at {}", ArchivePath.string());

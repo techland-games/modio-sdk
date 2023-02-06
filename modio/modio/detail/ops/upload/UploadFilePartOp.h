@@ -176,7 +176,7 @@ namespace Modio
 						std::shared_ptr<Modio::ModProgressInfo> Progress = Impl->ProgressInfo.lock();
 						if (Progress)
 						{
-							Progress->CurrentlyDownloadedBytes = Modio::FileSize(BytesProcessed);
+							Progress->CurrentlyDownloadedBytes = Modio::FileSize(FileOffset);
 						}
 					}
 
