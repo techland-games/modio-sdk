@@ -10,6 +10,7 @@
 
 // MIRRORED TO gdk/file/FileSystemImplementation.h, UPDATE THAT FILE IF THIS IS UPDATED
 #pragma once
+#include "common/FileSharedState.h"
 #include "common/detail/ops/file/DeleteFolderOp.h"
 #include "common/detail/ops/file/ReadSomeFromFileBufferedOp.h"
 #include "common/detail/ops/file/ReadSomeFromFileOp.h"
@@ -44,6 +45,8 @@ namespace Modio
 			Modio::filesystem::path UserDataPath;
 			Modio::filesystem::path RootTempPath;
 			Modio::GameID CurrentGameID;
+			
+			std::shared_ptr<Modio::Detail::FileSharedState> SharedState;
 
 		public:
 			/// <summary>
@@ -53,7 +56,10 @@ namespace Modio
 
 			std::vector<std::weak_ptr<FileObjectImplementation>> OpenFileObjects;
 
-			FileSystemImplementationBase(asio::io_context::service& OwningService) : OwningService(OwningService) {}
+			FileSystemImplementationBase(asio::io_context::service& OwningService) : OwningService(OwningService)
+			{
+				SharedState = std::make_shared<FileSharedState>();
+			}
 
 			/// <summary>
 			/// Delegated initializer for platform implementations of IO objects
@@ -87,6 +93,10 @@ namespace Modio
 
 			void Shutdown()
 			{
+				if (SharedState)
+				{
+					SharedState->bCancelRequested = true;
+				}
 				for (auto FileObject : OpenFileObjects)
 				{
 					if (auto FileImpl = FileObject.lock())
@@ -159,7 +169,8 @@ namespace Modio
 			auto DeleteFolderAsync(Modio::filesystem::path FolderPath, CompletionTokenType&& Token)
 			{
 				return asio::async_compose<CompletionTokenType, void(std::error_code)>(
-					DeleteFolderOp(FolderPath), Token, Modio::Detail::Services::GetGlobalContext().get_executor());
+					DeleteFolderOp(FolderPath, SharedState), Token,
+					Modio::Detail::Services::GetGlobalContext().get_executor());
 			}
 
 			// do we need to maintain a cache of temporary files?
