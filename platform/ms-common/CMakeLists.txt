@@ -22,6 +22,10 @@ if(MODIO_PLATFORM STREQUAL "WIN" OR MODIO_FORCE_MS_COMMON)
 		target_compile_options(platform INTERFACE -Wa,-mbig-obj -Og)
 	endif()
 
+	if(ENABLE_ASAN)
+		target_compile_options(platform INTERFACE /fsanitize=address)
+	endif()
+
 	target_include_directories(platform INTERFACE ${CMAKE_CURRENT_LIST_DIR}/include)
 
 	add_modio_implementation_file(${CMAKE_CURRENT_LIST_DIR}/include/common/HttpSharedState.ipp)
