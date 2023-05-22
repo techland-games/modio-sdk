@@ -112,12 +112,12 @@ void HttpSharedStateBase::Close()
 	WinHttpSetOption(CurrentSession, WINHTTP_OPTION_CONTEXT_VALUE, nullptr, sizeof(uintptr_t));
 
 	// Ensure that we update all of our callbacks and close all handles when we shut down 
-	WinHttpSetStatusCallback(CurrentSession, nullptr, WINHTTP_CALLBACK_FLAG_ALL_NOTIFICATIONS, 0);
+	WinHttpSetStatusCallback(CurrentSession, NULL, WINHTTP_CALLBACK_FLAG_ALL_NOTIFICATIONS, 0);
 	WinHttpCloseHandle(CurrentSession);
 
 	for(const auto Handle : ConnectionHandles)
 	{
-		WinHttpSetStatusCallback(Handle.first, nullptr, WINHTTP_CALLBACK_FLAG_ALL_NOTIFICATIONS, 0);
+		WinHttpSetStatusCallback(Handle.first, NULL, WINHTTP_CALLBACK_FLAG_ALL_NOTIFICATIONS, 0);
 		WinHttpCloseHandle(Handle.second);
 	}
 	
