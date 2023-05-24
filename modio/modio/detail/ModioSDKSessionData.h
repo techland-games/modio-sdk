@@ -130,6 +130,9 @@ namespace Modio
 
 			MODIO_IMPL static void SetEnvironmentOverrideUrl(std::string OverrideUrl);
 			MODIO_IMPL static Modio::Optional<std::string> GetEnvironmentOverrideUrl();
+			
+			MODIO_IMPL static void SetSourcePlatformOverride(bool value);
+			MODIO_IMPL static bool HasSourcePlatformOverride();
 
 			MODIO_IMPL static Modio::Optional<Modio::ModID> ResolveModCreationHandle(Modio::ModCreationHandle Handle);
 			MODIO_IMPL static void LinkModCreationHandle(Modio::ModCreationHandle Handle, Modio::ModID ID);
@@ -162,6 +165,7 @@ namespace Modio
 			Modio::Optional<std::string> EnvironmentOverrideUrl;
 			Modio::Portal PortalInUse;
 			InitializationState CurrentInitializationState = InitializationState::NotInitialized;
+			bool bIsSourcePlatform = false;
 			bool bModManagementEnabled = false;
 			std::vector<struct FieldError> LastValidationError;
 			// Implemented as shared_ptr because that way operations that need to alter the state of the entry can get a

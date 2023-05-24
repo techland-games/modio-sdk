@@ -208,6 +208,10 @@ namespace Modio
 					{
 						switch (Platform)
 						{
+							case (Modio::ModfilePlatform::Source):
+								RequestParams = RequestParams.AppendPayloadValue(
+									fmt::format("platforms[{}]", i), Modio::Detail::Constants::PlatformNames::Source);
+								break;
 							case (Modio::ModfilePlatform::Windows):
 								RequestParams = RequestParams.AppendPayloadValue(
 									fmt::format("platforms[{}]", i), Modio::Detail::Constants::PlatformNames::Windows);

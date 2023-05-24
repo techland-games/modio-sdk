@@ -428,6 +428,16 @@ namespace Modio
 		{
 			return Get().EnvironmentOverrideUrl;
 		}
+		
+		void SDKSessionData::SetSourcePlatformOverride(bool value)
+		{
+			Get().bIsSourcePlatform = value;
+		}
+
+		bool SDKSessionData::HasSourcePlatformOverride()
+		{
+			return Get().bIsSourcePlatform;
+		}
 
 		void SDKSessionData::InvalidateSubscriptionCache()
 		{
