@@ -429,6 +429,16 @@ namespace Modio
 			return Get().EnvironmentOverrideUrl;
 		}
 
+		void SDKSessionData::SetPlatformOverride(std::string Platform)
+		{
+			Get().PlatformOverride = Platform;
+		}
+
+		Modio::Optional<std::string> SDKSessionData::GetPlatformOverride()
+		{
+			return Get().PlatformOverride;
+		}
+
 		void SDKSessionData::InvalidateSubscriptionCache()
 		{
 			Get().bSubscriptionCacheInvalid = true;

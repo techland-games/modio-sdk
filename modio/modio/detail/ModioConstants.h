@@ -83,6 +83,7 @@ namespace Modio
 				constexpr const char* PS5 = "ps5";
 				constexpr const char* Switch = "switch";
 				constexpr const char* Oculus = "oculus";
+				constexpr const char* Source = "source";
 			}
 		}
 	}

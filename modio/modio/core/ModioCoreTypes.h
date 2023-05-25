@@ -73,7 +73,8 @@ namespace Modio
 		PS4,
 		PS5,
 		Switch,
-		Oculus
+		Oculus,
+		Source
 	};
 
 	/// @docpublic
