@@ -72,7 +72,6 @@ namespace Modio
 			} // namespace Configuration
 			namespace PlatformNames
 			{
-				constexpr const char* Source = "source";
 				constexpr const char* Windows = "windows";
 				constexpr const char* Mac = "mac";
 				constexpr const char* Linux = "linux";

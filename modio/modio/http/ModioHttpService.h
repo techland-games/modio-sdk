@@ -104,12 +104,6 @@ namespace Modio
 				{
 					Modio::Detail::SDKSessionData::SetEnvironmentOverrideUrl(EnvironmentOverrideUrl->second);
 				}
-				
-				auto SourcePlatformOverride = Overrides.find("SourcePlatform");
-				if (SourcePlatformOverride != Overrides.end())
-				{
-					Modio::Detail::SDKSessionData::SetSourcePlatformOverride(true);
-				}
 
 				return {};
 			}

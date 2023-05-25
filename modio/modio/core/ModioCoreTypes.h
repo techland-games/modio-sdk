@@ -63,7 +63,6 @@ namespace Modio
 	/// @brief Enum representing the platform(s) that a modfile is enabled for
 	enum class ModfilePlatform
 	{
-		Source,
 		Windows,
 		Mac,
 		Linux,

@@ -244,6 +244,7 @@ namespace Modio
 			return NewParamsInstance;
 		}
 
+
 		Modio::Detail::HttpRequestParams& HttpRequestParams::SetRange(Modio::FileOffset Start,
 																	  Modio::Optional<Modio::FileOffset> End)
 		{
@@ -499,14 +500,7 @@ namespace Modio
 			// Default headers
 			if (bSuppressPlatformHeader == false)
 			{
-				if (Modio::Detail::SDKSessionData::HasSourcePlatformOverride())
-				{
-					Headers.push_back({"x-modio-platform", "Source"});
-				}
-				else
-				{
-					Headers.push_back({"x-modio-platform", MODIO_TARGET_PLATFORM_HEADER});
-				}
+				Headers.push_back({"x-modio-platform", MODIO_TARGET_PLATFORM_HEADER});	
 			}
 
 			switch (Modio::Detail::SDKSessionData::GetPortal())
