@@ -29,11 +29,11 @@
 #include <algorithm>
 #include <memory>
 
-#ifdef MODIO_PROCESS_INTERNAL_INITPARAMS
+//#ifdef MODIO_PROCESS_INTERNAL_INITPARAMS
 	#include "modio/detail/ModioExtendedInitParamHandler.h"
-#else
-	#include "modio/detail/ModioExtInitParamStub.h"
-#endif
+//#else
+//	#include "modio/detail/ModioExtInitParamStub.h"
+//#endif
 
 #include <asio/yield.hpp>
 
