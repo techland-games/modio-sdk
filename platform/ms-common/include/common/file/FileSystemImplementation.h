@@ -438,7 +438,7 @@ namespace Modio
 				// is in FilePath
 				if (LexPath.string() == "")
 				{
-					std::string PreFolder = "..";
+					std::string PreFolder = "..\\";
 					std::string AbsFolder = "\\";
 
 					// This case means that the path does not have a reference to folders above the current location.
